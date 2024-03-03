@@ -1,0 +1,46 @@
+DROP DATABASE IF EXISTS Campeonato;
+CREATE DATABASE proyecto;
+
+USE proyecto;
+
+CREATE TABLE jugador(
+id INTEGER PRIMARY KEY NOT NULL,
+password VARCHAR(20)
+)ENGINE=innoDB;
+
+CREATE TABLE servidor(
+id INTEGER PRIMARY KEY NOT NULL,
+ciudad_id VARCHAR(20)
+)ENGINE=innoDB;
+
+CREATE TABLE partida(
+id_j1 INTEGER NOT NULL,
+id_j2 INTEGER NOT NULL,
+id_s  INTEGER NOT NULL,
+FechaYHora VARCHAR(20),
+ganador INTEGER NOT NULL,
+FOREIGN KEY (id_j1) REFERENCES jugador(id),
+FOREIGN KEY (id_j2) REFERENCES jugador(id),
+FOREIGN KEY (id_s) REFERENCES servidor(id),
+FOREIGN KEY (ganador) REFERENCES jugador(id)
+)ENGINE=innoDB;
+
+INSERT INTO jugador VALUES (1, 'Marc');
+INSERT INTO jugador VALUES (2, 'Adrian');
+INSERT INTO jugador VALUES (3, 'Kevin');
+INSERT INTO jugador VALUES (4, 'Edgar');
+
+
+INSERT INTO servidor VALUES (1, 'BCN');
+INSERT INTO servidor VALUES (2, 'MAD');
+INSERT INTO servidor VALUES (3, 'GIR');
+INSERT INTO servidor VALUES (4, 'TGN');
+
+
+INSERT INTO partida  VALUES (1,2,2, '12/10/2023',1);
+INSERT INTO partida  VALUES (1,3,1, '04/11/2023',3);
+INSERT INTO partida  VALUES (2,4,4, '12/01/2024',4);
+INSERT INTO partida  VALUES (2,1,1, '29/01/2024',2);
+INSERT INTO partida  VALUES (2,4,2, '07/12/2023',4);
+INSERT INTO partida  VALUES (4,2,2, '02/03/2024',2);
+INSERT INTO partida  VALUES (1,2,1, '30/01/2024',1);
